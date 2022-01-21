@@ -11,7 +11,7 @@ export const ERROR_MSG = 'ERROR_MSG';
 export const fetchSmurfs = () => {
     return (dispatch) => {
         dispatch({type: START_SMURF})
-        axios.get('http://localhost:3333/smurfs')
+        axios.get("http://localhost:3333/smurfs")
         .then((res) =>{
             console.log(res)
             dispatch({type: 'FETCH_SUCCESS', payload: res.data})

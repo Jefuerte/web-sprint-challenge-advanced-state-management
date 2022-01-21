@@ -22,22 +22,23 @@ const AddForm = (props) => {
         });
     }
 
-    const handleClick = e => {
+    const handleSubmit = e => {
         e.preventDefault();
-        if (state.name === "" || state.position === "" || state.nickname === "") {
+        if (state.name === "" || state.position === "" || state.nickname === "" || state.description === "" ) {
             //dispatch a custom error action
             return props.setError("error")
         } else {
             //dispatch an addSmurf action
-            return props.addSmurf({...state, id:Date.now()});
-        }
+             props.addSmurf({...state, id:Date.now()});
+        
     }
+}
 
     const { name, position, nickname, description } = state;
 
     return(<section>
         <h2>Add Smurf</h2>
-        <form onSubmit={handleClick}>
+        <form onSubmit={handleSubmit}>
             <div className="form-group">
                 <label htmlFor="name">Name:</label><br/>
                 <input onChange={handleChange} value={name} name="name" id="name" />
@@ -57,7 +58,7 @@ const AddForm = (props) => {
             {
                 props.error && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {props.error}</div>
             }
-            <button onClick={handleClick}>Submit Smurf</button>
+            <button onSubmit={handleSubmit}>Submit Smurf</button>
         </form>
     </section>);
 }
